@@ -1,0 +1,31 @@
+services:
+  virtual_browser:
+    image: virtual-browser:latest
+    build: .
+    hostname: virtual-browser
+    ports:
+      - "6080:6080"     # noVNC access only
+    tmpfs:
+      - /tmp            # Use tmpfs for ephemeral downloads
+    environment:
+      - DISPLAY=:1
+    deploy:
+      mode: replicated
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1024M
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    networks:
+      - browser-net
+
+networks:
+  browser-net:
+    driver: overlay
