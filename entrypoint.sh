@@ -33,6 +33,7 @@ sleep 2
 
 echo "[INFO] Launching Chromium with sandbox enabled..."
 chromium \
+  --no-sandbox \
   --disable-gpu \
   --disable-software-rasterizer \
   --disable-dev-shm-usage \
@@ -44,6 +45,5 @@ chromium \
   --disable-extensions \
   --disable-sync \
   --password-store=basic &
-
 echo "[INFO] Virtual browser ready at https://localhost:6080"
 tail -f /dev/null
