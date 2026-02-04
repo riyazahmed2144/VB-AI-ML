@@ -1,0 +1,2 @@
+BASE_TIMEOUT = 5
+HEADLESS = False
